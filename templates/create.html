@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Novo anúncio</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <!-- 👤 ANUNCIANTE (NOVO) -->
+        <input type="text" name="anunciante" placeholder="Seu nome (anunciante)" required>
+
+        <!-- 📦 PRODUTO -->
+        <input type="text" name="titulo" placeholder="Produto / Serviço" required>
+
+        <!-- 💰 PREÇO -->
+        <input type="text" name="preco" id="preco" placeholder="Preço (R$)" required>
+
+        <!-- 📝 DESCRIÇÃO (OPCIONAL) -->
+        <textarea name="descricao" placeholder="Descrição (opcional)"></textarea>
+
+        <!-- 📱 WHATSAPP -->
+        <input type="text" name="contato" placeholder="WhatsApp (DDD + número)" required>
+
+        <!-- 🖼️ IMAGEM (OBRIGATÓRIA) -->
+        <input type="file" name="imagem" accept="image/*" required>
+
+        <button type="submit">Publicar</button>
+
+    </form>
+
+</div>
+
+<!-- 💰 MÁSCARA DE PREÇO -->
+<script>
+const precoInput = document.getElementById('preco');
+
+precoInput.addEventListener('input', function (e) {
+    let value = e.target.value;
+
+    value = value.replace(/\D/g, '');
+
+    value = (value/100).toFixed(2) + '';
+
+    value = value.replace('.', ',');
+
+    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+
+    e.target.value = 'R$ ' + value;
+});
+</script>
+
+{% endblock %}

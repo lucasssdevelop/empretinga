@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="cards">
+
+{% for anuncio in anuncios %}
+
+<div class="card">
+
+    <!-- 🖼️ IMAGEM -->
+    <div class="img-container">
+        <img src="{{ anuncio['imagem'] }}">
+    </div>
+
+    <!-- 👤 ANUNCIANTE (NOVO) -->
+    <span class="seller">
+        {{ anuncio['anunciante'] }}
+    </span>
+
+    <!-- 📦 PRODUTO -->
+    <h3>{{ anuncio['titulo'] }}</h3>
+
+    <!-- 💰 PREÇO -->
+    <h4 class="price">{{ anuncio['preco'] }}</h4>
+
+    <!-- 📝 DESCRIÇÃO -->
+    <p>{{ anuncio['descricao'] }}</p>
+
+    <!-- 💚 WHATSAPP -->
+    <a class="whatsapp-btn"
+       href="{{ anuncio['whatsapp'] }}"
+       target="_blank">
+
+        <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/whatsapp.svg">
+        Falar no WhatsApp
+    </a>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}
