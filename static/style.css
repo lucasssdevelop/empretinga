@@ -211,3 +211,65 @@ button{
     background:#1d4ed8;
     transform:translateY(-1px);
 }
+
+/* ================================= */
+/* 🔍 ESTILOS DO BUSCADOR NO HEADER  */
+/* ================================= */
+.search-box {
+    flex: 1; /* Faz o buscador ocupar o espaço disponível entre o logo e o menu */
+    max-width: 400px;
+    margin: 0 30px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 10px 18px;
+    border: 1px solid #e5e7eb;
+    border-radius: 20px; /* Borda mais arredondada para visual profissional */
+    outline: none;
+    font-size: 14px;
+    background-color: #f9fafb;
+    transition: all 0.3s ease;
+    margin-bottom: 0; /* Remove a margem de 10px definida para inputs genéricos */
+}
+
+.search-box input:focus {
+    border-color: #2563eb;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ================================= */
+/* 🖼️ ESTILOS DO UPLOAD DE IMAGEM    */
+/* ================================= */
+.upload-container {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.upload-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 30px 20px;
+    border: 2px dashed #cbd5e1;
+    border-radius: 10px;
+    background-color: #f8fafc;
+    color: #64748b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.upload-label:hover {
+    border-color: #2563eb;
+    background-color: #eff6ff;
+    color: #2563eb;
+}
+
+.upload-label span {
+    font-size: 14px;
+    font-weight: 600;
+}

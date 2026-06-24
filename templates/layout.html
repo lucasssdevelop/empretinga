@@ -13,16 +13,18 @@
 <header class="topbar">
 
     <div class="logo-area">
-
         <div class="logo-box">
             <img src="{{ url_for('static', filename='images/logo.png') }}">
         </div>
-
         <div class="logo-text">
             <h1>EmpreTinga</h1>
             <span>Conectando pessoas, impulsionando negócios</span>
         </div>
+    </div>
 
+    <!-- 🔍 NOVO BUSCADOR -->
+    <div class="search-box">
+        <input type="text" id="buscaAnuncios" placeholder="Buscar produto, vendedor ou descrição...">
     </div>
 
     <nav class="menu">
@@ -35,6 +37,37 @@
 <div class="container">
     {% block content %}{% endblock %}
 </div>
+
+<!-- ⚡ SCRIPT DE BUSCA EM TEMPO REAL -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const inputBusca = document.getElementById('buscaAnuncios');
+
+    if (inputBusca) {
+        inputBusca.addEventListener('input', function() {
+            // Pega o texto digitado em minúsculas
+            const termo = this.value.toLowerCase();
+            
+            // Seleciona todos os cards de anúncios da página principal
+            const cards = document.querySelectorAll('.card');
+
+            cards.forEach(card => {
+                // Captura os textos de título, anunciante e descrição do card atual
+                const titulo = card.querySelector('h3').textContent.toLowerCase();
+                const anunciante = card.querySelector('.seller').textContent.toLowerCase();
+                const descricao = card.querySelector('p').textContent.toLowerCase();
+
+                // Se o termo digitado existir em algum dos textos, mantém visível. Se não, esconde.
+                if (titulo.includes(termo) || anunciante.includes(termo) || descricao.includes(termo)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+});
+</script>
 
 </body>
 </html>

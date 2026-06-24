@@ -8,7 +8,7 @@
 
     <form method="POST" enctype="multipart/form-data">
 
-        <!-- 👤 ANUNCIANTE (NOVO) -->
+        <!-- 👤 ANUNCIANTE -->
         <input type="text" name="anunciante" placeholder="Seu nome (anunciante)" required>
 
         <!-- 📦 PRODUTO -->
@@ -23,8 +23,20 @@
         <!-- 📱 WHATSAPP -->
         <input type="text" name="contato" placeholder="WhatsApp (DDD + número)" required>
 
-        <!-- 🖼️ IMAGEM (OBRIGATÓRIA) -->
-        <input type="file" name="imagem" accept="image/*" required>
+        <!-- 🖼️ IMAGEM (ESTILIZADA) -->
+        <div class="upload-container">
+            <!-- Input original escondido (hidden) -->
+            <input type="file" name="imagem" id="imagem" accept="image/*" required hidden>
+            
+            <!-- Nossa caixa bonita conectada ao input pelo 'for="imagem"' -->
+            <label for="imagem" class="upload-label">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                    <circle cx="12" cy="13" r="4"></circle>
+                </svg>
+                <span id="file-name">Insira sua foto</span>
+            </label>
+        </div>
 
         <button type="submit">Publicar</button>
 
@@ -32,22 +44,31 @@
 
 </div>
 
-<!-- 💰 MÁSCARA DE PREÇO -->
+<!-- 💰 MÁSCARA DE PREÇO E MUDANÇA DE NOME DO ARQUIVO -->
 <script>
+// Máscara do Preço
 const precoInput = document.getElementById('preco');
-
 precoInput.addEventListener('input', function (e) {
     let value = e.target.value;
-
     value = value.replace(/\D/g, '');
-
     value = (value/100).toFixed(2) + '';
-
     value = value.replace('.', ',');
-
     value = value.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-
     e.target.value = 'R$ ' + value;
+});
+
+// Muda o texto quando o usuário escolhe a foto
+const inputImagem = document.getElementById('imagem');
+const fileName = document.getElementById('file-name');
+
+inputImagem.addEventListener('change', function(e) {
+    if(e.target.files.length > 0) {
+        fileName.textContent = e.target.files[0].name; // Mostra o nome do arquivo
+        fileName.style.color = '#16a34a'; // Fica verdinho para indicar sucesso
+    } else {
+        fileName.textContent = 'Insira sua foto';
+        fileName.style.color = '#64748b';
+    }
 });
 </script>
 
